@@ -8,11 +8,11 @@ import ModalBody from './ModalBody';
 function Product(props) {
     
       return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 345 ,m:2}}>
           <CardActionArea sx={{ display:'flex', flexDirection:'column', justifyContent:'center'}} >
             <CardMedia
               component="img"
-              height="400"
+              height="auto"
               image="https://blog.trapitos.com.ar/uploads/2018/07/camisa-de-tela-vertical.jpg"
               alt="green iguana"
             />
