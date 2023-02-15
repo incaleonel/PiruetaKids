@@ -11,3 +11,22 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.icon-child{
+  position: relative;
+  animation-name: animaciondegiro;
+  animation-duration: 4s;
+  animation-timing-function: ease-out;
+  color: rgba(229, 3, 161, 0.553); 
+  
+}
+@keyframes animaciondegiro {
+  0% {
+    left: -250px;
+  }
+ 
+  100% {
+    left: 0;
+    transform: rotate(360deg);
+  }
+}
