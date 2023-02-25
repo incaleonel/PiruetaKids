@@ -8,8 +8,8 @@ import ModalBody from './ModalBody';
 function Product(props) {
     
       return (
-        <Card sx={{ maxWidth: 345 ,m:2}}>
-          <CardActionArea sx={{ display:'flex', flexDirection:'column', justifyContent:'center'}} >
+        <Card sx={{ maxWidth: 300 ,m:2, display:'flex', flexDirection:'column', alignItems:'center'}}>
+          <CardActionArea  >
             <CardMedia
               component="img"
               height="auto"
@@ -24,8 +24,8 @@ function Product(props) {
                 $2999
               </Typography>
             </CardContent>
-            <ModalBody />
           </CardActionArea>
+          <ModalBody />
         </Card>
       );
 }
