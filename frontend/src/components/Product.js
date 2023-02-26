@@ -1,33 +1,34 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
-import ModalBody from './ModalBody';
+import * as React from "react";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { CardActions } from "@mui/material";
+import ModalBody from "./ModalBody";
+
 function Product(props) {
-    
-      return (
-        <Card sx={{ maxWidth: 300 ,m:2, display:'flex', flexDirection:'column', alignItems:'center'}}>
-          <CardActionArea  >
-            <CardMedia
-              component="img"
-              height="auto"
-              image="https://blog.trapitos.com.ar/uploads/2018/07/camisa-de-tela-vertical.jpg"
-              alt="green iguana"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h6" component="div" align='center'>
-                {props.title}
-              </Typography>
-              <Typography gutterBottom variant="h4" component="div" align='center'>
-                $2999
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-          <ModalBody />
-        </Card>
-      );
+  return (
+    <Card sx={{ width: 250 }}>
+      <CardMedia
+        sx={{ height:250}}
+        component="img"
+        image={props.linkImage}
+        alt={props.info}
+      />
+      <CardContent sx={{ height: 70}}>
+        <Typography variant="h5" component="div" align="center">
+          {props.precio}
+        </Typography>
+        <Typography variant="h9" component="div" align="center">
+          {props.title}
+        </Typography>
+      </CardContent>
+      <CardActions sx={{justifyContent:'center'}}>
+        <ModalBody />
+      </CardActions>
+    </Card>
+  );
 }
 
 export default Product;
+

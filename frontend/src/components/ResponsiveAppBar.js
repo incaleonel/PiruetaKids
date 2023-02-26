@@ -50,7 +50,7 @@ function ResponsiveAppBar() {
             <ChildCareTwoToneIcon
               sx={{ display: { xs: "none", md: "flex" }, mr: 1, fontSize: 50, position:'relative'}} className='icon-child'
             />
-            <Toolbar disableGutters>
+            <Toolbar disableGutters>  
               {label.map((e) => {
                 return (
                   <Typography

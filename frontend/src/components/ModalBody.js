@@ -38,7 +38,7 @@ export default function ModalBody() {
 
   return (
     <div>
-      <Button variant="contained" onClick={handleClickOpen} sx={{ mb: 5 }}>
+      <Button variant="contained" onClick={handleClickOpen}>
         Agregar al carrito
       </Button>
       <Dialog
