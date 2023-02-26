@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/PiruetaKids/static/css/main.13b2f5e2.css",
-    "main.js": "/PiruetaKids/static/js/main.e89e512e.js",
+    "main.css": "/PiruetaKids/static/css/main.0f911f87.css",
+    "main.js": "/PiruetaKids/static/js/main.03cf9900.js",
     "index.html": "/PiruetaKids/index.html",
-    "main.13b2f5e2.css.map": "/PiruetaKids/static/css/main.13b2f5e2.css.map",
-    "main.e89e512e.js.map": "/PiruetaKids/static/js/main.e89e512e.js.map"
+    "main.0f911f87.css.map": "/PiruetaKids/static/css/main.0f911f87.css.map",
+    "main.03cf9900.js.map": "/PiruetaKids/static/js/main.03cf9900.js.map"
   },
   "entrypoints": [
-    "static/css/main.13b2f5e2.css",
-    "static/js/main.e89e512e.js"
+    "static/css/main.0f911f87.css",
+    "static/js/main.03cf9900.js"
   ]
 }
