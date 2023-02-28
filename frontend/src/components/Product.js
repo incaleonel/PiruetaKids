@@ -24,7 +24,7 @@ function Product(props) {
         </Typography>
       </CardContent>
       <CardActions sx={{justifyContent:'center'}}>
-        <ModalBody />
+        <ModalBody value={props.number}/>
       </CardActions>
     </Card>
   );

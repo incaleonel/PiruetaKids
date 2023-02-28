@@ -25,7 +25,7 @@ export const articulos = [
         linkImagen: "https://m.media-amazon.com/images/I/71LMuDIeHKL._AC_UX679_.jpg"
     },
     {
-        infoProducto: "Camisa escosesa",
+        infoProducto: "Camisa escocesa",
         precio: 1890,
         linkImagen: "https://pepeganga.vtexassets.com/arquivos/ids/618122/2J012410-123767632-1.png?v=637642880145000000"
     },
@@ -35,7 +35,7 @@ export const articulos = [
         linkImagen: "https://blog.trapitos.com.ar/uploads/2018/07/camisa-de-tela-vertical.jpg   "
     },
     {
-        infoProducto: "Camisa escosesa",
+        infoProducto: "Camisa escocesa",
         precio: 1890,
         linkImagen: "https://pepeganga.vtexassets.com/arquivos/ids/618122/2J012410-123767632-1.png?v=637642880145000000"
     },
