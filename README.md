@@ -3,6 +3,6 @@
 ## Herramientas a usar:
 
 * React
-* MondoDB
+* MongoDB
 * Material UI
 * Node
