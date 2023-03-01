@@ -17,7 +17,7 @@ function Product(props) {
       />
       <CardContent sx={{ height: 70}}>
         <Typography variant="h5" component="div" align="center">
-          {props.precio}
+          {props.price}
         </Typography>
         <Typography variant="h9" component="div" align="center">
           {props.title}

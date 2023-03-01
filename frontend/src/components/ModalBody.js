@@ -22,15 +22,27 @@ export default function ModalBody(prop) {
   const [cant, setCant] = React.useState(0);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
-  const { amount, setAmount } = React.useContext(CartContext);
-  const [article, setArticle] = React.useState("null");
+  const { reservedClothing, setReservedClothing } = React.useContext(CartContext);
+  const [article, setArticle] = React.useState({});
   const handleClickOpen = (e) => {
     setArticle(articulos[e.target.value]);
     setOpen(true);
   };
 
   const handleClose = () => {
-    setAmount(amount + cant);
+    if(cant){
+      if(reservedClothing.total){
+      setReservedClothing({total: reservedClothing.total + cant, 
+                     allArticles:[...reservedClothing.allArticles,{...article,amount:cant}]});
+    }
+    else{
+      setReservedClothing({total: reservedClothing.total + cant, 
+        allArticles:[{...article,amount:cant}]})
+    }
+    }
+    
+    
+    console.log(reservedClothing)
     setOpen(false);
   };
 
@@ -48,22 +60,22 @@ export default function ModalBody(prop) {
         onClose={() => setOpen(false)}
         aria-labelledby="responsive-dialog-title"
       >
-        <Box sx={{ p: 3, display: "flex" }}>
-          <Card sx={{ width: 420 }} elevation>
+        <Box sx={{ p: 3, display: "flex", flexDirection: {xs: 'column', sm: 'row'}}}>
+          <Card sx={{ width: {md:420} }} elevation>
             <CardMedia
               sx={{ height: 250 }}
               component="img"
-              image={article.linkImagen}
-              alt={article.infoProducto}
+              image={article.linkImage}
+              alt={article.infoProduct}
             />
             <CardContent sx={{ height: 70 }}>
               <Typography variant="h6" component="div" align="center">
-                {article.infoProducto}
+                {article.infoProduct}
               </Typography>
             </CardContent>
           </Card>
-          <Grid container sx={{ m: 2 }}>
-            <Grid item md={12}>
+          <Grid container sx={{ m: 2 }} >
+            <Grid item xs={12}>
               <FormControl sx={{ my: 3 }} size="small" required>
                 <FormLabel id="talles" color="secondary">
                   TALLES
@@ -98,24 +110,24 @@ export default function ModalBody(prop) {
                 <FormHelperText>Elige un talle</FormHelperText>
               </FormControl>
             </Grid>
-            <Grid item md={12}>
-              <FormControl sx={{ my: 3, width: 200 }} required>
+            <Grid item xs={12}>
+              <FormControl sx={{ my: 3, width: 200 }} required >
                 <InputLabel id="cantidad-de-prendas">Cantidad</InputLabel>
                 <Select
                   onChange={handleChange}
-                  value={cant}
                   labelId="cantidad-de-prendas"
                   label="Cantidad"
+                  fullWidth
                 >
                   <MenuItem value={1}>1 Unidad</MenuItem>
-                  <MenuItem value={2}>2 Unidades</MenuItem>
-                  <MenuItem value={3}>3 Unidades</MenuItem>
-                  <MenuItem value={4}>4 Unidades</MenuItem>
-                  <MenuItem value={5}>5 Unidades</MenuItem>
+                  {[2,3,4,5].map(element=>
+                    <MenuItem value={element}>{element} Unidades</MenuItem>
+                  )
+                  }
                 </Select>
               </FormControl>
             </Grid>
-            <Grid item md={12}>
+            <Grid item xs={12}>
               <Button variant="outlined" color="primary" onClick={handleClose}>
                 Añadir
               </Button>

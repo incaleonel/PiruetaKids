@@ -3,9 +3,9 @@ import { createContext, useState } from "react";
 const CartContext = createContext();
 
 const CartProvider = ({children}) => {
-    const [amount,setAmount] = useState(0);
+    const [reservedClothing,setReservedClothing] = useState({total:0,allArticles:[]});
     
-    const data = {amount, setAmount}
+    const data = {reservedClothing, setReservedClothing}
 
     return (
         <CartContext.Provider value={data}>{children}</CartContext.Provider>
