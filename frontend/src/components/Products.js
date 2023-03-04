@@ -13,7 +13,7 @@ export default function Products() {
                 title={articulo.infoProduct}
                 linkImage={articulo.linkImage}
                 info={articulo.infoProduct}
-                precio={"$" + articulo.price}
+                price={"$" + articulo.price}
                 number={index}
               />
             </Grid>

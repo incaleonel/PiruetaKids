@@ -5,15 +5,18 @@ import IconButton from "@mui/material/IconButton";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import CartContext from "../context/CarContext";
 import DeleteIcon from "@mui/icons-material/Delete";
+
 import {
   Avatar,
-  Box,  
+  Box,
+  Divider,
   Drawer,
   List,
   ListItem,
   ListItemAvatar,
   ListItemText,
 } from "@mui/material";
+import CounterCart from "./CounterCart";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -25,7 +28,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 export default function CustomizedBadges(props) {
-  const { reservedClothing } = React.useContext(CartContext);
+  const { reservedClothing,totalAmount} = React.useContext(CartContext);
   const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (open) => (event) => {
@@ -35,17 +38,38 @@ export default function CustomizedBadges(props) {
     ) {
       return;
     }
-
     setOpen(open);
   };
-  
-    
-   
+const showArticles = () => {
+    let components = []
+    for (const article in reservedClothing){
+     components = components.concat([<>
+                <ListItem 
+                  secondaryAction={
+                    <>
+                      <IconButton edge="end" aria-label="delete">
+                        <DeleteIcon />
+                      </IconButton>
+                    </>
+                  }
+                >
+                  <ListItemAvatar>
+                    <Avatar src={reservedClothing[article].linkImage} />
+                  </ListItemAvatar>
+                  <ListItemText primary={reservedClothing[article].infoProduct} />
+                  <CounterCart amount={reservedClothing[article].amount} article={article}/>
+                </ListItem>
+
+                <Divider /> 
+              </>])
+    }
+    return components;
+  }
+
   return (
     <>
       <IconButton aria-label="cart" sx={{ m: 2 }} onClick={toggleDrawer(true)}>
-        <StyledBadge badgeContent={reservedClothing.total} 
-        color="secondary">
+        <StyledBadge badgeContent={totalAmount} color="secondary">
           <ShoppingCartIcon />
         </StyledBadge>
       </IconButton>
@@ -56,25 +80,9 @@ export default function CustomizedBadges(props) {
           role="presentation"
           onKeyDown={toggleDrawer(false)}
         >
-        
-         { reservedClothing.allArticles.map( article => 
-         <List>
-            <ListItem
-              secondaryAction={
-                <IconButton edge="end" aria-label="delete">
-                  <DeleteIcon />
-                </IconButton>
-              }
-            >
-              <ListItemAvatar>
-                <Avatar src= {article.linkImage}/> 
-              </ListItemAvatar>
-              <ListItemText primary={article.infoProduct}/>
-            </ListItem>
-            ,
+          <List>
+            {showArticles()}
           </List>
-         )
-          } 
         </Box>
       </Drawer>
     </>

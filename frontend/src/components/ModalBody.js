@@ -22,33 +22,40 @@ export default function ModalBody(prop) {
   const [cant, setCant] = React.useState(0);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
-  const { reservedClothing, setReservedClothing } = React.useContext(CartContext);
+  const { reservedClothing, setReservedClothing, totalAmount, setTotalAmount } =
+    React.useContext(CartContext);
   const [article, setArticle] = React.useState({});
+  const talles = ["s", "m", "l", "xl"];
   const handleClickOpen = (e) => {
     setArticle(articulos[e.target.value]);
     setOpen(true);
   };
 
   const handleClose = () => {
-    if(cant){
-      if(reservedClothing.total){
-      setReservedClothing({total: reservedClothing.total + cant, 
-                     allArticles:[...reservedClothing.allArticles,{...article,amount:cant}]});
-    }
-    else{
-      setReservedClothing({total: reservedClothing.total + cant, 
-        allArticles:[{...article,amount:cant}]})
-    }
-    }
     
     
-    console.log(reservedClothing)
+    if (cant) {
+      if (reservedClothing) {
+        setReservedClothing({
+          ...reservedClothing,
+          [article.article_id]:{...article, amount:article.article_id in reservedClothing ? cant + reservedClothing[article.article_id].amount : cant}
+        });
+      } else {
+        setReservedClothing({
+          [article.article_id]:{...article, amount: cant}
+        });
+        
+      }
+      setTotalAmount(totalAmount + cant);
+      setCant(0);
+    }
     setOpen(false);
   };
 
   const handleChange = (event) => {
     setCant(event.target.value);
   };
+
   return (
     <div>
       <Button variant="contained" onClick={handleClickOpen} value={prop.value}>
@@ -60,8 +67,14 @@ export default function ModalBody(prop) {
         onClose={() => setOpen(false)}
         aria-labelledby="responsive-dialog-title"
       >
-        <Box sx={{ p: 3, display: "flex", flexDirection: {xs: 'column', sm: 'row'}}}>
-          <Card sx={{ width: {md:420} }} elevation>
+        <Box
+          sx={{
+            p: 3,
+            display: "flex",
+            flexDirection: { xs: "column", sm: "row" },
+          }}
+        >
+          <Card sx={{ width: { md: 420 } }} elevation>
             <CardMedia
               sx={{ height: 250 }}
               component="img"
@@ -74,44 +87,26 @@ export default function ModalBody(prop) {
               </Typography>
             </CardContent>
           </Card>
-          <Grid container sx={{ m: 2 }} >
+          <Grid container sx={{ m: 2 }}>
             <Grid item xs={12}>
               <FormControl sx={{ my: 3 }} size="small" required>
                 <FormLabel id="talles" color="secondary">
                   TALLES
                 </FormLabel>
                 <RadioGroup name="talles" row aria-labelledby="talles">
-                  <FormControlLabel
-                    value="xl"
-                    control={<Radio size="small" />}
-                    label="XL"
-                  />
-                  <FormControlLabel
-                    value="s"
-                    control={<Radio size="small" />}
-                    label="S"
-                  />
-                  <FormControlLabel
-                    value="m"
-                    control={<Radio size="small" />}
-                    label="M"
-                  />
-                  <FormControlLabel
-                    value="l"
-                    control={<Radio size="small" />}
-                    label="L"
-                  />
-                  <FormControlLabel
-                    value="xxl"
-                    control={<Radio size="small" />}
-                    label="XXL"
-                  />
+                  {talles.map((talle) => (
+                    <FormControlLabel
+                      value={talle}
+                      control={<Radio size="small" />}
+                      label={talle.toUpperCase()}
+                    />
+                  ))}
                 </RadioGroup>
                 <FormHelperText>Elige un talle</FormHelperText>
               </FormControl>
             </Grid>
             <Grid item xs={12}>
-              <FormControl sx={{ my: 3, width: 200 }} required >
+              <FormControl sx={{ my: 3, width: 200 }} required>
                 <InputLabel id="cantidad-de-prendas">Cantidad</InputLabel>
                 <Select
                   onChange={handleChange}
@@ -120,10 +115,9 @@ export default function ModalBody(prop) {
                   fullWidth
                 >
                   <MenuItem value={1}>1 Unidad</MenuItem>
-                  {[2,3,4,5].map(element=>
+                  {[2, 3, 4, 5].map((element) => (
                     <MenuItem value={element}>{element} Unidades</MenuItem>
-                  )
-                  }
+                  ))}
                 </Select>
               </FormControl>
             </Grid>

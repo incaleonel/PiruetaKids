@@ -7,6 +7,7 @@ import MenuItem from "@mui/material/MenuItem";
 import ChildCareTwoToneIcon from "@mui/icons-material/ChildCareTwoTone";
 import '../index.css';
 import BarRight from "./BarRight";
+import {Link} from "react-router-dom"
 
 
 const pages = ["Productos", "Quiénes somos", "Contacto"];
@@ -106,7 +107,9 @@ function ResponsiveAppBar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography textAlign="center">
+                  <Link to={page}>{page}</Link>
+                   </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -144,7 +147,8 @@ function ResponsiveAppBar() {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 3, color: "black", display: "block" , fontWeight:"500", fontFamily:"sans-serif"}}
               >
-                {page}
+                <Link to={page}>{page}</Link>
+                
               </Button>
             ))}
           </Box>
