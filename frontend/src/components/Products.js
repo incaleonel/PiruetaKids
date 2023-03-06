@@ -8,7 +8,7 @@ export default function Products() {
       <Grid spacing={2} container sx={{ justifyContent: "center", mt: 5 }}>
         {articulos.map((articulo, index) => {
           return (
-            <Grid item md={3}>
+            <Grid key={articulo.article_id} item md={3}>
               <Product
                 title={articulo.infoProduct}
                 linkImage={articulo.linkImage}

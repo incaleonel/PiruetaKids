@@ -28,7 +28,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 export default function CustomizedBadges(props) {
-  const { reservedClothing,totalAmount} = React.useContext(CartContext);
+  const { reservedClothing,totalAmount,setReservedClothing,setTotalAmount} = React.useContext(CartContext);
   const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (open) => (event) => {
@@ -40,6 +40,13 @@ export default function CustomizedBadges(props) {
     }
     setOpen(open);
   };
+const deleteArticle = (item) => ()=> {
+    const copy = {...reservedClothing};
+    setTotalAmount(totalAmount - copy[item].amount);
+    delete copy[item];
+    setReservedClothing(copy);
+    
+}
 const showArticles = () => {
     let components = []
     for (const article in reservedClothing){
@@ -47,7 +54,7 @@ const showArticles = () => {
                 <ListItem 
                   secondaryAction={
                     <>
-                      <IconButton edge="end" aria-label="delete">
+                      <IconButton edge="end" aria-label="delete" onClick={deleteArticle(article)}>
                         <DeleteIcon />
                       </IconButton>
                     </>
@@ -73,10 +80,10 @@ const showArticles = () => {
           <ShoppingCartIcon />
         </StyledBadge>
       </IconButton>
-      <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
-        {/* debes realizar el resumen del carrito, cantidad y articulos, con opcion de remover*/}
+      <Drawer anchor="right" open={open} onClose={toggleDrawer(false)} sx={{display:{xs:'none',sm:'initial'}}}>
+        
         <Box
-          sx={{ width: { xs: 250, sm: 400 } }}
+          sx={{ width:400  }}
           role="presentation"
           onKeyDown={toggleDrawer(false)}
         >

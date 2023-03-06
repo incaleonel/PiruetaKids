@@ -74,7 +74,7 @@ export default function ModalBody(prop) {
             flexDirection: { xs: "column", sm: "row" },
           }}
         >
-          <Card sx={{ width: { md: 420 } }} elevation>
+          <Card sx={{ width: { md: 420 }, boxShadow:'none'}}>
             <CardMedia
               sx={{ height: 250 }}
               component="img"
@@ -96,6 +96,7 @@ export default function ModalBody(prop) {
                 <RadioGroup name="talles" row aria-labelledby="talles">
                   {talles.map((talle) => (
                     <FormControlLabel
+                      key={talle}
                       value={talle}
                       control={<Radio size="small" />}
                       label={talle.toUpperCase()}
@@ -116,7 +117,7 @@ export default function ModalBody(prop) {
                 >
                   <MenuItem value={1}>1 Unidad</MenuItem>
                   {[2, 3, 4, 5].map((element) => (
-                    <MenuItem value={element}>{element} Unidades</MenuItem>
+                    <MenuItem key={element} value={element}>{element} Unidades</MenuItem>
                   ))}
                 </Select>
               </FormControl>

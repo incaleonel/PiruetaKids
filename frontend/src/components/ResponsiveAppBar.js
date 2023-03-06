@@ -1,14 +1,20 @@
 import * as React from "react";
-import {AppBar, Box, Toolbar, IconButton, Typography, Menu} from "@mui/material";
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Typography,
+  Menu,
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import ChildCareTwoToneIcon from "@mui/icons-material/ChildCareTwoTone";
-import '../index.css';
+import "../index.css";
 import BarRight from "./BarRight";
-import {Link} from "react-router-dom"
-
+import { Link } from "react-router-dom";
 
 const pages = ["Productos", "Quiénes somos", "Contacto"];
 const label = [
@@ -23,13 +29,11 @@ const label = [
   { letter: "K", color: "#039be5" },
   { letter: "I", color: "#8bc34a" },
   { letter: "D", color: "#ffb300" },
-  { letter: "S", color: "#673ab7" }
-  
+  { letter: "S", color: "#673ab7" },
 ];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -39,26 +43,28 @@ function ResponsiveAppBar() {
     setAnchorElNav(null);
   };
 
-
   return (
-    <AppBar position="static" >
+    <AppBar position="static">
       <Container maxWidth="xl">
-        <Toolbar disableGutters
-                >
-          <Box display='flex'
-              alignItems='center'
-          >
+        <Toolbar disableGutters>
+          <Box display="flex" alignItems="center">
             <ChildCareTwoToneIcon
-              sx={{ display: { xs: "none", md: "flex" }, mr: 1, fontSize: 50, position:'relative'}} className='icon-child'
+              sx={{
+                display: { xs: "none", md: "flex" },
+                mr: 1,
+                fontSize: 50,
+                position: "relative",
+              }}
+              className="icon-child"
             />
-            <Toolbar disableGutters>  
+            <Toolbar disableGutters>
               {label.map((e) => {
                 return (
                   <Typography
                     variant="h6"
                     noWrap
                     component="a"
-                    href="/"
+                    href="/PiruetaKids"
                     sx={{
                       p: 0.5,
                       display: { xs: "none", md: "flex" },
@@ -67,7 +73,7 @@ function ResponsiveAppBar() {
                       letterSpacing: ".3rem",
                       color: e.color,
                       textDecoration: "none",
-                      userSelect: "none"
+                      userSelect: "none",
                     }}
                   >
                     {e.letter}
@@ -106,53 +112,57 @@ function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">
-                  <Link to={page}>{page}</Link>
-                   </Typography>
-                </MenuItem>
+                
+                  <MenuItem key={page} onClick={handleCloseNavMenu}>
+                    <Link to={page} className='anchorLink'>
+                    <Typography textAlign="center" sx={{color: "black"}}>{page}</Typography></Link>
+                  </MenuItem>
+                
               ))}
             </Menu>
           </Box>
-        
-            <Box
-              display='flex'
-              flexGrow='1'>
-              {label.map((e) => {
-                return (
-                  <Typography
-                    variant="h8"
-                    noWrap
-                    component="a"
-                    href="/"
-                    sx={{
-                      p: .4,
-                      display: { xs: "flex", md: "none" },
-                      fontFamily: "monospace",
-                      fontWeight: 600,
-                      color: e.color,
-                      textDecoration: "none",
-                      userSelect: "none"
-                    }}
-                  >
-                    {e.letter}
-                  </Typography>
-                );
-              })}
-            </Box>
+
+          <Box display="flex" flexGrow="1">
+            {label.map((e) => {
+              return (
+                <Typography
+                  variant="h8"
+                  noWrap
+                  component="a"
+                  href="/"
+                  sx={{
+                    p: 0.4,
+                    display: { xs: "flex", md: "none" },
+                    fontFamily: "monospace",
+                    fontWeight: 600,
+                    color: e.color,
+                    textDecoration: "none",
+                    userSelect: "none",
+                  }}
+                >
+                  {e.letter}
+                </Typography>
+              );
+            })}
+          </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <Button
+              <Link to={page} className='anchorLink'><Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 3, color: "black", display: "block" , fontWeight:"500", fontFamily:"sans-serif"}}
+                sx={{
+                  my: 3,
+                  color: "black",
+                  display: "block",
+                  fontWeight: "500",
+                  fontFamily: "sans-serif",
+                }}
               >
-                <Link to={page}>{page}</Link>
-                
-              </Button>
+                {page}
+              </Button></Link>
             ))}
           </Box>
-        <BarRight/>
+          <BarRight />
         </Toolbar>
       </Container>
     </AppBar>

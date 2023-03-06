@@ -16,8 +16,8 @@ code {
 .icon-child{
   position: relative;
   animation-name: animaciondegiro;
-  animation-duration: 4s;
-  animation-timing-function: ease-out;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
   color: rgba(229, 3, 161, 0.553); 
   
 }
@@ -30,4 +30,7 @@ code {
     left: 0;
     transform: rotate(360deg);
   }
+}
+.anchorLink{
+  text-decoration: none;
 }
