@@ -7,6 +7,7 @@ import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 import Products from "./components/Products";
 
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -35,6 +36,7 @@ function App() {
           <Route path="/Productos" element={<Products />} />
           <Route path="/Quiénes somos" element={<AboutUs />} />
           <Route path="/Contacto" element={<ContactUs />} />
+          
         </Routes>
         </CartProvider>
       </BrowserRouter>

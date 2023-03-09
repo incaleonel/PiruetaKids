@@ -4,17 +4,13 @@ import Product from "./Product";
 
 export default function Products() {
   return (
-    <Container sx={{ mb: 5 }}>
-      <Grid spacing={2} container sx={{ justifyContent: "center", mt: 5 }}>
-        {articulos.map((articulo, index) => {
+    <Container sx={{ my: 5 }} maxWidth="lg">
+      <Grid spacing={2} container >
+        {articulos.map((articulo) => {
           return (
-            <Grid key={articulo.article_id} item md={3}>
+            <Grid key={articulo.article_id} item xs={6} sm={4} md={3} >
               <Product
-                title={articulo.infoProduct}
-                linkImage={articulo.linkImage}
-                info={articulo.infoProduct}
-                price={"$" + articulo.price}
-                number={index}
+                article={articulo}
               />
             </Grid>
           );

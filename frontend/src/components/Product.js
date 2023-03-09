@@ -4,27 +4,28 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActions } from "@mui/material";
-import ModalBody from "./ModalBody";
+import ViewProduct from "./ViewProduct";
+
 
 function Product(props) {
   return (
-    <Card sx={{ width: 250 }}>
+    <Card sx={{ maxWidth:280, mx:'auto'}}>
       <CardMedia
-        sx={{ height:250}}
+        sx={{ height:{xs:120,sm:250}, width:{xs:100,sm:200}, margin:'auto'}}
         component="img"
-        image={props.linkImage}
-        alt={props.info}
+        image={props.article.linkImage}
+        alt={props.article.infoProduct}
       />
-      <CardContent sx={{ height: 70}}>
-        <Typography variant="h5" component="div" align="center">
-          {props.price}
+      <CardContent sx={{ height: {xs:50,md:70}}}>
+        <Typography variant='h5' component="div" align="center" sx={{fontSize:{xs:'1rem', md:'1.5rem'}}}>
+          {props.article.price}
         </Typography>
-        <Typography variant="h9" component="div" align="center">
-          {props.title}
+        <Typography variant="h9" component="div" align="center" sx={{fontSize:{xs:'0.8rem', md:'1rem'}}}>
+          {props.article.infoProduct}
         </Typography>
       </CardContent>
       <CardActions sx={{justifyContent:'center'}}>
-        <ModalBody value={props.number}/>
+        <ViewProduct article={props.article}/>
       </CardActions>
     </Card>
   );
