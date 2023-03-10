@@ -28,7 +28,8 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 export default function CustomizedBadges(props) {
-  const { reservedClothing,totalAmount,setReservedClothing,setTotalAmount} = React.useContext(CartContext);
+  const { reservedClothing, totalAmount, setReservedClothing, setTotalAmount } =
+    React.useContext(CartContext);
   const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (open) => (event) => {
@@ -40,38 +41,46 @@ export default function CustomizedBadges(props) {
     }
     setOpen(open);
   };
-const deleteArticle = (item) => ()=> {
-    const copy = {...reservedClothing};
+  const deleteArticle = (item) => () => {
+    const copy = { ...reservedClothing };
     setTotalAmount(totalAmount - copy[item].amount);
     delete copy[item];
     setReservedClothing(copy);
-    
-}
-const showArticles = () => {
-    let components = []
-    for (const article in reservedClothing){
-     components = components.concat([<>
-                <ListItem 
-                  secondaryAction={
-                    <>
-                      <IconButton edge="end" aria-label="delete" onClick={deleteArticle(article)}>
-                        <DeleteIcon />
-                      </IconButton>
-                    </>
-                  }
+  };
+  const showArticles = () => {
+    let components = [];
+    for (const article in reservedClothing) {
+      components = components.concat([
+        <>
+          <ListItem
+            secondaryAction={
+              <>
+                <IconButton
+                  edge="end"
+                  aria-label="delete"
+                  onClick={deleteArticle(article)}
                 >
-                  <ListItemAvatar>
-                    <Avatar src={reservedClothing[article].linkImage} />
-                  </ListItemAvatar>
-                  <ListItemText primary={reservedClothing[article].infoProduct} />
-                  <CounterCart amount={reservedClothing[article].amount} article={article}/>
-                </ListItem>
+                  <DeleteIcon />
+                </IconButton>
+              </>
+            }
+          >
+            <ListItemAvatar>
+              <Avatar src={reservedClothing[article].linkImage} />
+            </ListItemAvatar>
+            <ListItemText primary={reservedClothing[article].infoProduct} />
+            <CounterCart
+              amount={reservedClothing[article].amount}
+              article={article}
+            />
+          </ListItem>
 
-                <Divider /> 
-              </>])
+          <Divider />
+        </>,
+      ]);
     }
     return components;
-  }
+  };
 
   return (
     <>
@@ -80,16 +89,19 @@ const showArticles = () => {
           <ShoppingCartIcon />
         </StyledBadge>
       </IconButton>
-      <Drawer anchor="right" open={open} onClose={toggleDrawer(false)} sx={{display:{xs:'none',sm:'initial'}}}>
+      <Drawer
+        anchor="right"
+        open={open}
+        onClose={toggleDrawer(false)}
         
+        
+      >
         <Box
-          sx={{ width:400  }}
+          sx={{ width: { md:400} }}
           role="presentation"
           onKeyDown={toggleDrawer(false)}
         >
-          <List>
-            {showArticles()}
-          </List>
+          <List>{showArticles()}</List>
         </Box>
       </Drawer>
     </>
